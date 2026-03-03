@@ -102,6 +102,10 @@ export default function CitySection({ id, cityLabel, cityName, cityNameItalic, c
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              const header = entry.target.querySelector('.city-header');
+              if (header) {
+                header.classList.add('visible');
+              }
             }
           });
         },

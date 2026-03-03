@@ -1,4 +1,32 @@
+import { useEffect, useRef } from 'react';
+
 export default function Contact() {
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const cardsRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    const cards = cardsRef.current;
+
+    if (header && cards) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      observer.observe(header);
+      observer.observe(cards);
+
+      return () => observer.disconnect();
+    }
+  }, []);
+
   const contacts = [
     {
       type: 'zalo',
@@ -37,7 +65,7 @@ export default function Contact() {
   return (
     <section className="contact-section">
       <div className="contact-inner">
-        <div className="contact-header">
+        <div className="contact-header" ref={headerRef}>
           <div className="contact-tag">Liên hệ với chúng tôi</div>
           <h2 className="contact-title">
             Sẵn sàng cho một
@@ -49,7 +77,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="contact-cards">
+        <div className="contact-cards" ref={cardsRef}>
           {contacts.map((contact, index) => (
             <a
               key={index}

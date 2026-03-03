@@ -518,7 +518,7 @@ nav.scrolled {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.city-header.reveal {
+.city-header.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -875,6 +875,14 @@ nav.scrolled {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.why-left.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .why-eyebrow {
@@ -932,6 +940,14 @@ nav.scrolled {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+}
+
+.why-right.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .why-feature-card {
@@ -1036,6 +1052,14 @@ nav.scrolled {
   flex-direction: column;
   align-items: center;
   gap: 1.8rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-header.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contact-tag {
@@ -1086,6 +1110,14 @@ nav.scrolled {
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+}
+
+.contact-cards.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contact-card {

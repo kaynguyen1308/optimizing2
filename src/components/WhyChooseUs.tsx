@@ -1,4 +1,32 @@
+import { useEffect, useRef } from 'react';
+
 export default function WhyChooseUs() {
+  const leftRef = useRef<HTMLDivElement | null>(null);
+  const rightRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const left = leftRef.current;
+    const right = rightRef.current;
+
+    if (left && right) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      observer.observe(left);
+      observer.observe(right);
+
+      return () => observer.disconnect();
+    }
+  }, []);
+
   const features = [
     {
       icon: '◆',
@@ -20,7 +48,7 @@ export default function WhyChooseUs() {
   return (
     <section className="why-section">
       <div className="why-container">
-        <div className="why-left">
+        <div className="why-left" ref={leftRef}>
           <div className="why-eyebrow">Tại sao chọn chúng tôi</div>
           <h2 className="why-title">
             Đẳng cấp <em>cao cấp</em>
@@ -38,7 +66,7 @@ export default function WhyChooseUs() {
           </button>
         </div>
 
-        <div className="why-right">
+        <div className="why-right" ref={rightRef}>
           {features.map((feature, index) => (
             <div key={index} className="why-feature-card">
               <div className="why-feature-icon">{feature.icon}</div>
